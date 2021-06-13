@@ -5,11 +5,41 @@
 {% block content %}
 <div class="container">
   <div class="row">
-    <div class="col-md-2" id="heading-index"> From Index</div>
-    <div class="col-md-6"> 
+    <div class="col-md-4" id="categories-col">
+      <h2>Pitch Categories</h2>
+      <ul id="pitch-categories">
+        <li>Product Pitches</li>
+        <li>Interview Pitches</li>
+        <li>Idea Pitches</li>
+      </ul>
+    </div>
+    <div class="col-md-8"> 
+      <h2>New Pitches</h2>
+      <div>
+        <div class="row">
+          <div class="col-md-4">
+            <img src="" alt="" id="users-profile">
+          </div>
+          <div class="col-md-8">
+            <div class="card">
+              <h3 class="card-header">Username</h5>
+              <div class="card-body">
+                <h4>Pitch Category</h6>
+                <p>This is where the pitch goes. Whatever it is about </p>
+                <h6 id="post-date">posted on 12/12/21</h6>
+                <ul id="interactive-layer">
+                  <li>Likes</li>
+                  <li>Dislikes</li>
+                  <li>Comment</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
       
     </div>
-    <div class="col-md-4"></div>
   </div>
 </div>
 {% endblock %}
