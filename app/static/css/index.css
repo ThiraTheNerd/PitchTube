@@ -1,0 +1,23 @@
+#heading{
+  color:red;
+}
+#heading-index{
+  color: blue;
+}
+#float-nav{
+  margin-left: 1100px;
+  margin-top: 10px;
+  
+}
+.navbar{
+  background-color: #04009a;
+}
+.prof-pic{
+  border-radius: 120px;
+  border: 2px solid black;
+  /* height: 120px;
+  width: 120px; */
+}
+.navbar-brand{
+  color: white;
+}
