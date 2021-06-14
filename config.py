@@ -4,6 +4,7 @@ class Config:
     '''
     General configuration parent class
     '''
+    SECRET_KEY = '0123456789'
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://thirathenerd:admin2021@localhost/pitchtube'
 
 

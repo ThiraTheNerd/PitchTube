@@ -4,19 +4,25 @@
 #heading-index{
   color: blue;
 }
-#float-nav{
-  margin-left: 1100px;
-  margin-top: 10px;
+#nav-list{
+  list-style-type: none;
+  float: left;
+  overflow: hidden;
   
+}
+ul#nav-list li{
+  display: inline-block;
+  padding: 10px;
 }
 .navbar{
   background-color: #04009a;
+  justify-content: space-between;
 }
 .prof-pic{
-  border-radius: 120px;
+  border-radius: 180px;
   border: 2px solid black;
-  /* height: 120px;
-  width: 120px; */
+  height: 200px;
+  width: 200px;
 }
 .navbar-brand{
   color: white;
@@ -36,6 +42,12 @@ ul#pitch-categories li{
 ul#interactive-layer li{
   display: inline-block;
   padding: 16px;
+}
+#registration-form{
+  margin: 100px;
+  margin-top: 10px;
+  background-color: #f0ebcc;
+  padding: 100px;
 }
 /* div{
   border: black solid 2px;

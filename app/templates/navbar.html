@@ -2,8 +2,19 @@
 <nav class="navbar">
   <a class="navbar-brand">PitchTube</a>
   <div class="buttons" id="float-nav">
-    <button class="btn btn-outline-success my-2 my-sm-0" style="margin-right: 10px;" type="submit">Login</button>
-    <button type="button" class="btn btn-sm btn-outline-warning" style="margin-right: 10px;" >Log Out</button>
-    <img src="" alt="..." class="prof-pic">
+    <ul id="nav-list">
+      {% if current_user.is_authenticated %}
+      <li>
+        <button type="button" class="btn btn-sm btn-outline-warning" style="margin-right: 10px;" >
+          <a href="{{ url_for('auth.logout')}}">Log Out</a></button>
+      </li>
+      <li><a><img src="" alt="..." class="prof-pic"></a></li>
+      {% else %}
+      <li>
+        <button class="btn btn-outline-success my-2 my-sm-0" style="margin-right: 10px;" type="submit">
+          <a href="{{url_for('auth.login')}}">Login</a></button>
+      </li>
+      {% endif %}
+    </ul>
   </div>
 </nav>
