@@ -20,9 +20,9 @@ ul#nav-list li{
 }
 .prof-pic{
   border-radius: 180px;
-  border: 2px solid black;
-  height: 200px;
-  width: 200px;
+  border: 2px solid white;
+  height: 50px;
+  width: 50px;
 }
 .navbar-brand{
   color: white;
@@ -49,6 +49,26 @@ ul#interactive-layer li{
   background-color: #f0ebcc;
   padding: 100px;
 }
-/* div{
-  border: black solid 2px;
-} */
+.img_thumbnail{
+  height: 300px;
+  width: 300px;
+}
+#pp-submit-btn{
+  background-color: #77ACF1;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
+#user-bio{
+  margin-top: 15px;
+  border: 1px solid #3EDBF0;
+  margin-left: 0px;
+  padding: 10px;
+  padding-bottom: 120px;
+}
+#updateprof-btn{
+  background-color: #77ACF1;
+}
+#bio-header{
+  border-bottom: #3EDBF0;
+}

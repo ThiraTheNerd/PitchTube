@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-4" >
+      <div class="card mb-3">
+        {% if user.profile_pic_path %}
+        <img src= "{{url_for('static', filename = user.profile_pic_path)}}" alt="" 
+        class="img_thumbnail">
+        {% else %}
+        <div class="alert">User has no profile</div>
+        {% endif %}
+        <div class="card-body">
+          {% if user == current_user %}
+          <form action="{{url_for('main.update_pic', uname = user.username)}}" method="POST" enctype=
+          "multipart/form-data">
+            <input type="file" name="photo" class="form-control" required>
+            <input type="submit" id = pp-submit-btn> 
+          </form>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8" style="margin-left: 0px;">
+      <div class="card" id="user-bio">
+        <div class="card-header" id="bio-header">
+          <h3>{{user.username}}</h3>
+        </div>
+        <div class="card-body">
+          {% if user.bio %}
+          <p> {{user.bio}}</p>
+          {% else %}
+          <div class="alert alert-light">
+            <p>User has no bio</p>
+          </div>
+          {% endif %}
+        </div>
+        <div class="card-footer">
+          <buttton class="btn btn-sm" id="updateprof-btn"><a href="{{url_for('main.update_profile', uname = user.username)}}">
+            Update Profile</a>
+          </buttton>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+</div>
+{% endblock %}
