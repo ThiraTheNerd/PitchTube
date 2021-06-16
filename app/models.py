@@ -17,7 +17,7 @@ class Pitch(db.Model):
   content = db.Column(db.String())
   comments = db.relationship('Comment', backref = 'pitch', lazy = 'dynamic')
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-  category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
+  category= db.Column(db.String())
 
 
   def __repr__(self):
@@ -34,16 +34,6 @@ class Comment(db.Model):
 
   def __repr__(self):
     return f'Comment {self.comment}'
-
-
-class Category(db.Model):
-  __tablename__ = 'categories'
-  id = db.Column(db.Integer, primary_key = True)
-  category_name = db.Column(db.String(255))
-  pitches = db.relationship('Pitch', backref = 'category', lazy = 'dynamic')
-
-  def __repr__(self):
-    return f'Category {self.category_name}'
 
 
 class User(UserMixin,db.Model):
