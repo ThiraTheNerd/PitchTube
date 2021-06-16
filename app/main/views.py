@@ -1,8 +1,8 @@
 from flask import render_template,request,redirect, url_for,abort
 from . import main
 from flask_login import login_required
-from ..models import User
-from .forms import UpdateProfile
+from ..models import User, Pitch
+from .forms import UpdateProfile, PitchForm
 from .. import db, photos
 
 
@@ -13,7 +13,8 @@ def index():
   View root page function that returns the index page and its data
   '''
   title = "Home Page"
-  return render_template('index.html', title = title)
+  pitches = Pitch.query.order_by(Pitch.posted_date.desc())
+  return render_template('index.html', title = title, pitches = pitches)
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -50,3 +51,18 @@ def update_pic(uname):
     user.profile_pic_path = path
     db.session.commit()
   return redirect(url_for('main.profile', uname = uname))
+
+@main.route('/pitch/<uname>/new', methods = ['GET', 'POST'])
+@login_required
+def new_pitch(uname):
+  current_user = User.query.filter_by(username = uname).first()
+
+  pitch_form = PitchForm()
+  if pitch_form.validate_on_submit():
+    pitch = Pitch(pitch=pitch_form.pitch_title.data, content =pitch_form.content.data, 
+    user_id = current_user,category_id = pitch_form.category.data,)
+    db.session.add(pitch)
+    db.session.commit()
+    flash('Your pitch has been created successfully')
+    return redirect(url_for('main.index'))
+  return render_template('pitches/new_pitch.html', title = "New Pitch", pitch_form = pitch_form)

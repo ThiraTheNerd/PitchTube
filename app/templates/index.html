@@ -8,26 +8,28 @@
     <div class="col-md-4" id="categories-col">
       <h2>Pitch Categories</h2>
       <ul id="pitch-categories">
-        <li>All</li>
-        <li>Product Pitches</li>
-        <li>Interview Pitches</li>
-        <li>Idea Pitches</li>
+        <li><a>All</a></li>
+        <li><a>Pitches</a> </li>
+        <li><a>Interview Pitches</a></li>
+        <li><a>Idea Pitches</a></li>
+        <li><a href="{{url_for('main.new_pitch', uname= current_user.username)}}">New Pitch</a></li>
       </ul>
     </div>
     <div class="col-md-6"> 
       <h2>New Pitches</h2>
       <div>
         <div class="row">
+          {% for pitch in pitches.items%}
           <div class="col-md-4">
             <img src="" alt="" id="users-profile">
           </div>
           <div class="col-md-8">
             <div class="card">
-              <h3 class="card-header">Username</h5>
+              <h3 class="card-header">{{pitch.username}}</h5>
               <div class="card-body">
-                <h4>Pitch Category</h6>
-                <p>This is where the pitch goes. Whatever it is about </p>
-                <h6 id="post-date">posted on 12/12/21</h6>
+                <h4>{{pitch.category_id}}</h6>
+                <p>{{pitch.content | truncate(50)}}</p>
+                <h6 id="post-date">posted on {{pitch.posted_date}}</h6>
                 <ul id="interactive-layer">
                   <li>Likes</li>
                   <li>Dislikes</li>
@@ -35,8 +37,8 @@
                 </ul>
               </div>
             </div>
-
           </div>
+          {% endfor %}
         </div>
       </div>
     </div>

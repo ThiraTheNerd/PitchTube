@@ -9,14 +9,14 @@
         <img src= "{{url_for('static', filename = user.profile_pic_path)}}" alt="" 
         class="img_thumbnail">
         {% else %}
-        <div class="alert">User has no profile</div>
+        <div class="alert alert-warning">User has no profile Photo</div>
         {% endif %}
         <div class="card-body">
           {% if user == current_user %}
           <form action="{{url_for('main.update_pic', uname = user.username)}}" method="POST" enctype=
           "multipart/form-data">
             <input type="file" name="photo" class="form-control" required>
-            <input type="submit" id = pp-submit-btn> 
+            <input type="submit" id = 'pp-submit-btn'> 
           </form>
           {% endif %}
         </div>

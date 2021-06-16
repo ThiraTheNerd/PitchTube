@@ -8,8 +8,17 @@
         <button type="button" class="btn btn-sm btn-outline-warning" style="margin-right: 10px;" >
           <a href="{{ url_for('auth.logout')}}">Log Out</a></button>
       </li>
-      <li><a href="{{url_for('main.profile', uname= current_user.username)}}">
-        <img src="{{url_for('static', filename = user.profile_pic_path)}}" alt="..." class="prof-pic"></a></li>
+        {% if current_user.profile_pic_path %}
+        <li><a href="{{url_for('main.profile', uname= current_user.username)}}">       
+          <img src="{{url_for('static', filename = current_user.profile_pic_path)}}" alt="..." 
+          class="prof-pic"></a>
+        </li>
+        {% else %}
+        <li><a href="{{url_for('main.profile', uname= current_user.username)}}">       
+          <img src="{{url_for('static', filename = 'photos/default.png')}}" alt="..." 
+          class="prof-pic"></a>
+        </li>
+        {% endif %}
       {% else %}
       <li>
         <button class="btn btn-outline-success my-2 my-sm-0" style="margin-right: 10px;" type="submit">
