@@ -39,7 +39,7 @@ ul#pitch-categories li{
   float: left;
   overflow: hidden;
 }
-ul#interactive-layer li{
+#interactive-layer li{
   display: inline-block;
   padding: 16px;
 }

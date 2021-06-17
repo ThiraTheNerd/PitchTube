@@ -58,9 +58,14 @@ def new_pitch():
   pitch_form = PitchForm()
   if pitch_form.validate_on_submit():
     pitch = Pitch(pitch=pitch_form.pitch_title.data, content =pitch_form.content.data, 
-    user = current_user.id,category = pitch_form.category.data,)
+    user_id = current_user.id,category = pitch_form.category.data)
     db.session.add(pitch)
     db.session.commit()
     flash('Your pitch has been created successfully')
     return redirect(url_for('main.index'))
   return render_template('pitches/new_pitch.html', title = "New Pitch", pitch_form = pitch_form)
+
+@main.route('/pitch/<int:id>')
+def pitch(id):
+  pitch = Pitch.query.filter_by(id = id).first()
+  return render_template('pitches/pitch.html', pitch= pitch)

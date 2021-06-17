@@ -5,19 +5,11 @@
 {% block content %}
 <div class="container">
   <div class="row">
-    <div class="col-md-4" id="categories-col">
-      <h2>Pitch Categories</h2>
-      <ul id="pitch-categories">
-        <li><a>All</a></li>
-        <li><a>Pitches</a> </li>
-        <li><a>Interview Pitches</a></li>
-        <li><a>Idea Pitches</a></li>
-        <li><a href="{{url_for('main.new_pitch', uname= current_user.username)}}">New Pitch</a></li>
-      </ul>
+    <div class="col-md-3" id="categories-col">
+      {% include 'side-nav.html' %}
     </div>
     <div class="col-md-6"> 
       <h2>New Pitches</h2>
-      <div>
         <div class="row">
           {% for message in  get_flashed_messages() %}
           <div class="alert alert-warning">
@@ -28,19 +20,23 @@
           {% if pitches%}
             {% for pitch in pitches%}
             <div class="col-md-4">
-              {% if pitch.profile_pic_path %}
-              <img src="{{pitch.profile_pic_path}}" alt="" id="users-profile">
+              {% if current_user.profile_pic_path %}
+              <img src="{{url_for('static', filename = '{{pitch.profile_pic_path}}')}}" alt="this image" id="users-profile">
               {% else %}
-              <img src="{{url_for('static', filename = 'photos/default.png')}}" alt="" id="users-profile">
+              <img src="{{url_for('static', filename = 'photos/default.png')}}" alt="that-image" id="users-profile">
               {% endif %}
             </div>
             <div class="col-md-8">
               <div class="card">
-                <h3 class="card-header">{{pitch.user}}</h5>
+                <h3 class="card-header">{{pitch.pitch}}</h5>
                 <div class="card-body">
                   <h4>{{pitch.category_id}}</h6>
                   <p>{{pitch.content | truncate(50)}}</p>
-                  <small><a class="article-readmore" href="">read more...</a></small>
+                  <small><a class="article-readmore" href="{{url_for('main.pitch', id = pitch.id)}}">read more...</a></small><br>
+                  <br>
+                  <small>Category: <a class="article-category" href="">{{pitch.category}}</a></small><br>
+                  <small>Author: <a class="article-category" href="">{{pitch.user.username}}</a></small>
+                  <hr>
                   <small id="post-date">posted on {{pitch.posted_date.strftime('%Y-%m-%d')}}</small>
                   <ul id="interactive-layer">
                     <li>Likes</li>
@@ -58,9 +54,8 @@
             </div>
           {% endif %}
         </div>
-      </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
       <h4>Users</h4>
     </div>
   </div>
