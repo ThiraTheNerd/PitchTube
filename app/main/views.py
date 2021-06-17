@@ -69,3 +69,8 @@ def new_pitch():
 def pitch(id):
   pitch = Pitch.query.filter_by(id = id).first()
   return render_template('pitches/pitch.html', pitch= pitch)
+
+@main.route('/pitch/<string:category>')
+def pitch_category(category):
+  pitches = Pitch.query.filter_by(category = pitch.category_id).all()
+  return render_template('pitches/pitch_category.html', pitches = pitches)

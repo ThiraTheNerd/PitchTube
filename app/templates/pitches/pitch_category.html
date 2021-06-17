@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{%block content %}
+<div class="row">
+  <div class="col-md-3" id="categories-col">
+    {% include 'side-nav.html' %}
+  </div>
+  <div class="col-md-6">
+    {% for pitch in pitches %}
+      <div class="card">
+        <h3 class="card-header">{{pitch.pitch}}</h5>
+        <div class="card-body">
+          <h4>{{pitch.category_id}}</h6>
+          <p>{{pitch.content | truncate(50)}}</p>
+          <br>
+          <small>Category: <a class="article-category" href="">{{pitch.category}}</a></small><br>
+          <small>Author: <a class="article-category" href="">{{pitch.user.username}}</a></small>
+          <hr>
+          <small id="post-date">posted on {{pitch.posted_date.strftime('%Y-%m-%d')}}</small><br>
+          <br>
+          {% if pitch.user_id == current_user.id %}
+          <div id= "interactive-layer">
+            <a class="btn btn-secondary btn-sm mt-2 mb-2" href="">Edit</a>
+            <button type="button" class="btn btn-danger btn-sm m-1 mb-1"  data-toggle="modal" data-target="#deleteModal">Delete</button>
+          </div>
+          {% endif %}
+          <ul id="interactive-layer">
+            <li>Likes</li>
+            <li>Dislikes</li>
+            <li>Comment</li>
+          </ul>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
