@@ -1,8 +1,8 @@
 <h2>Pitch Categories</h2>
 <ul id="pitch-categories">
-  <li><a>All</a></li>
-  <li><a>Pitches</a> </li>
-  <li><a>Interview Pitches</a></li>
-  <li><a>Idea Pitches</a></li>
+  <li><a href="{{url_for('main.index')}}">All</a></li>
+  <li><a href="{{url_for('main.pitch_category', category = 'Product Pitch')}}">Product Pitches</a> </li>
+  <li><a href="{{url_for('main.pitch_category', category = 'Interview Pitch')}}">Interview Pitches</a></li>
+  <li><a href="{{url_for('main.pitch_category', category = 'Idea Pitch')}}">Idea Pitches</a></li>
   <li><a href="{{url_for('main.new_pitch', uname= current_user.username)}}">New Pitch</a></li>
 </ul>

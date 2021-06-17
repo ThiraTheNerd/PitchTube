@@ -73,6 +73,8 @@ def pitch(id):
 @main.route('/pitch/<string:category>')
 def pitch_category(category):
   pitches = Pitch.query.filter_by(category = category).all()
+  if pitches == None:
+    flash('No pitches in this category')
   return render_template('pitches/pitch_category.html', pitches = pitches)
 
 @main.route('/like/<int:id>', methods = ['POST', 'GET'])
@@ -111,5 +113,6 @@ def new_comment(pitch_id):
     flash('Your comment has been added')
     return redirect(url_for('main.index'))
   return render_template('pitches/new_comment.html', comment_form = comment_form)
+
 
 
