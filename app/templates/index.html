@@ -19,9 +19,20 @@
       <h2>New Pitches</h2>
       <div>
         <div class="row">
-          {% for pitch in pitches.items%}
+          {% for message in  get_flashed_messages() %}
+          <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+          </div>
+          {% endfor %}
+
+          {% for pitch in pitches%}
           <div class="col-md-4">
-            <img src="" alt="" id="users-profile">
+            {% if pitch.profile_pic_path %}
+            <img src="{{pitch.profile_pic_path}}" alt="" id="users-profile">
+            {% else %}
+            <img src="{{url_for('static', filename = 'photos/default.png')}}" alt="" id="users-profile">
+            {% endif %}
           </div>
           <div class="col-md-8">
             <div class="card">

@@ -1,6 +1,6 @@
-from flask import render_template,request,redirect, url_for,abort
+from flask import render_template,request,redirect, url_for,abort,flash
 from . import main
-from flask_login import login_required
+from flask_login import login_required,current_user
 from ..models import User, Pitch
 from .forms import UpdateProfile, PitchForm
 from .. import db, photos
@@ -24,7 +24,7 @@ def profile(uname):
     abort(404)
   return render_template('profile/profile.html', user = user)
 
-@main.route('/user/<uname>/update', methods = ['GET', 'POST'])
+@main.route('/user/update/<uname>', methods = ['GET', 'POST'])
 @login_required
 def update_profile(uname):
   user = User.query.filter_by(username = uname).first()
@@ -52,11 +52,9 @@ def update_pic(uname):
     db.session.commit()
   return redirect(url_for('main.profile', uname = uname))
 
-@main.route('/pitch/<uname>/new', methods = ['GET', 'POST'])
+@main.route('/pitch/new', methods = ['GET', 'POST'])
 @login_required
-def new_pitch(uname):
-  current_user = User.query.filter_by(username = uname).first()
-
+def new_pitch():
   pitch_form = PitchForm()
   if pitch_form.validate_on_submit():
     pitch = Pitch(pitch=pitch_form.pitch_title.data, content =pitch_form.content.data, 
