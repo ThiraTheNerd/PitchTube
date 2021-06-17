@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% macro display_pitches(pitches) %}
+<div class="row">
+  {% for message in  get_flashed_messages() %}
+  <div class="alert alert-warning">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{ message }}
+  </div>
+  {% endfor %}
+  {% for pitch in pitches%}
+  <div class="col-md-4">
+    {% if pitch.profile_pic_path %}
+    <img src="{{url_for('static', filename = '{{pitch.profile_pic_path}}')}}" alt="this image" id="users-profile">
+    {% else %}
+    <img src="{{url_for('static', filename = 'photos/default.png')}}" alt="that-image" id="users-profile">
+    {% endif %}
+  </div>
+  <div class="col-md-8">
+    <div class="card">
+      <h3 class="card-header">{{pitch.pitch}}</h5>
+      <div class="card-body">
+        <h4>{{pitch.category_id}}</h6>
+        <p>{{pitch.content | truncate(50)}}</p>
+        <small><a class="article-readmore" href="{{url_for('main.pitch', id = pitch.id)}}">read more...</a></small><br>
+        <br>
+        <small>Category: <a class="article-category" href="{{url_for('main.pitch_category', category = pitch.category)}}">
+          {{pitch.category}}</a></small><br>
+        <small>Author: <a class="article-category" href="">{{pitch.user.username}}</a></small><br>
+        <small id="post-date">posted on {{pitch.posted_date.strftime('%Y-%m-%d')}}</small><br>
+        <div>
+          <br>
+          <span class="foot" >1<a href="{{url_for('main.new_comment', pitch_id = pitch.id)}}"> Comments</a></span> 
+          <span class="foot" >
+            <a href="{{url_for('main.like',id = pitch.id)}}">
+              <i class="fa fa-thumbs-up" style="font-size:18px;color: green"></i>
+            </a> 1
+          </span>
+          <span class="foot">
+            <a href="">
+              <i class="fa fa-thumbs-down" style="color:red;"></i>
+                2
+            </a>
+          </span>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endmacro %}

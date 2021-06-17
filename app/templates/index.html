@@ -39,7 +39,7 @@
                 <small id="post-date">posted on {{pitch.posted_date.strftime('%Y-%m-%d')}}</small><br>
                 <div>
                   <br>
-                  <span class="foot" ><a>1 Comments</a></span> 
+                  <span class="foot" >1<a href="{{url_for('main.new_comment', pitch_id = pitch.id)}}"> Comments</a></span> 
                   <span class="foot" >
                     <a href="{{url_for('main.like',id = pitch.id)}}">
                       <i class="fa fa-thumbs-up" style="font-size:18px;color: green"></i>

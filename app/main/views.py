@@ -2,7 +2,7 @@ from flask import render_template,request,redirect, url_for,abort,flash
 from . import main
 from flask_login import login_required,current_user
 from ..models import User, Pitch , Comment, Upvote, Downvote
-from .forms import UpdateProfile, PitchForm
+from .forms import UpdateProfile, PitchForm, CommentForm
 from .. import db, photos
 
 
@@ -79,9 +79,9 @@ def pitch_category(category):
 @login_required
 def like(id):
   pitch = Pitch.query.get(id)
-  new_vote = Upvote(user_id = current_user, pitch_id = pitch )
+  new_vote = Upvote(upvote = 1, pitch_id = pitch )
   print(new_vote)
-  # new_vote.save()
+  new_vote.save()
   return redirect(url_for('main.index', pitch = pitch))
 
 @main.route('/dislike/<int:id>', methods = ['POST', 'GET'])
@@ -99,4 +99,17 @@ def dislike(id):
   new_vote = Downvote(user_id = current_user, pitch_id = id )
   new_vote.save()
   return redirect(url_for('main.index', id = id))
+
+@main.route('/pitch/new-comment/<int:pitch_id>', methods = ['GET', 'POST'])
+def new_comment(pitch_id):
+  comment_form = CommentForm()
+  if comment_form.validate_on_submit():
+    comment = Comment(comment = comment_form.comment.data, user_id = current_user, pitch_id = pitch_id)
+    print(comment)
+    db.session.add(comment)
+    db.session.commit()
+    flash('Your comment has been added')
+    return redirect(url_for('main.index'))
+  return render_template('pitches/new_comment.html', comment_form = comment_form)
+
 
