@@ -23,11 +23,20 @@
             <button type="button" class="btn btn-danger btn-sm m-1 mb-1"  data-toggle="modal" data-target="#deleteModal">Delete</button>
           </div>
           {% endif %}
-          <ul id="interactive-layer">
-            <li>Likes</li>
-            <li>Dislikes</li>
-            <li>Comment</li>
-          </ul>
+          <div>
+            <span class="foot" >1 Comments</span> 
+            <span class="foot" >
+              <a href="{{url_for('main.like',id = pitch.id)}}">
+                <i class="fa fa-thumbs-up" style="font-size:18px;color: green">Yes</i>
+              </a> 1
+            </span>
+            <span class="foot">
+              <a href=""> 
+                <i class="fa fa-thumbs-down" style="color:red;"></i> 
+                1
+              </a>
+            </span>
+          </div>
         </div>
       </div>
     {% endfor %}

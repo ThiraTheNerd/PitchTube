@@ -39,8 +39,7 @@ ul#pitch-categories li{
   float: left;
   overflow: hidden;
 }
-#interactive-layer li{
-  display: inline-block;
+.foot{
   padding: 16px;
 }
 #registration-form{
