@@ -78,17 +78,11 @@ def pitch_category(category):
 @main.route('/like/<int:id>', methods = ['POST', 'GET'])
 @login_required
 def like(id):
-  pitches = Upvote.query.filter_by(pitch_id = id).all()
-  print(pitches)
-  for pitch in pitches:
-    print(pitch)
-    if valid_string == to_str:
-      return redirect('main.index', id = id)
-    else:
-      continue
-  new_vote = Upvote(user_id = current_user, pitch_id = id )
+  pitch = Pitch.query.get(id)
+  new_vote = Upvote(user_id = current_user, pitch_id = pitch )
+  print(new_vote)
   # new_vote.save()
-  return redirect(url_for('main.index', id = id))
+  return redirect(url_for('main.index', pitch = pitch))
 
 @main.route('/dislike/<int:id>', methods = ['POST', 'GET'])
 @login_required
