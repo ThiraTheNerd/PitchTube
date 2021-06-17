@@ -58,7 +58,7 @@ def new_pitch():
   pitch_form = PitchForm()
   if pitch_form.validate_on_submit():
     pitch = Pitch(pitch=pitch_form.pitch_title.data, content =pitch_form.content.data, 
-    user_id = current_user.id,category = pitch_form.category.data,)
+    user = current_user.id,category = pitch_form.category.data,)
     db.session.add(pitch)
     db.session.commit()
     flash('Your pitch has been created successfully')

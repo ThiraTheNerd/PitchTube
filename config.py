@@ -8,6 +8,13 @@ class Config:
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://thirathenerd:admin2021@localhost/pitchtube'
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
 
+    #Email configuration
+    MAIL_SERVER= 'smtp.googlemail.com'
+    MAIL_PORT = '587'
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
+    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+
 
 
 class ProdConfig(Config):

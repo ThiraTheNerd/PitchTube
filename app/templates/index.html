@@ -25,31 +25,38 @@
             {{ message }}
           </div>
           {% endfor %}
-
-          {% for pitch in pitches%}
-          <div class="col-md-4">
-            {% if pitch.profile_pic_path %}
-            <img src="{{pitch.profile_pic_path}}" alt="" id="users-profile">
-            {% else %}
-            <img src="{{url_for('static', filename = 'photos/default.png')}}" alt="" id="users-profile">
-            {% endif %}
-          </div>
-          <div class="col-md-8">
-            <div class="card">
-              <h3 class="card-header">{{pitch.username}}</h5>
-              <div class="card-body">
-                <h4>{{pitch.category_id}}</h6>
-                <p>{{pitch.content | truncate(50)}}</p>
-                <h6 id="post-date">posted on {{pitch.posted_date}}</h6>
-                <ul id="interactive-layer">
-                  <li>Likes</li>
-                  <li>Dislikes</li>
-                  <li>Comment</li>
-                </ul>
+          {% if pitches%}
+            {% for pitch in pitches%}
+            <div class="col-md-4">
+              {% if pitch.profile_pic_path %}
+              <img src="{{pitch.profile_pic_path}}" alt="" id="users-profile">
+              {% else %}
+              <img src="{{url_for('static', filename = 'photos/default.png')}}" alt="" id="users-profile">
+              {% endif %}
+            </div>
+            <div class="col-md-8">
+              <div class="card">
+                <h3 class="card-header">{{pitch.user}}</h5>
+                <div class="card-body">
+                  <h4>{{pitch.category_id}}</h6>
+                  <p>{{pitch.content | truncate(50)}}</p>
+                  <small><a class="article-readmore" href="">read more...</a></small>
+                  <small id="post-date">posted on {{pitch.posted_date.strftime('%Y-%m-%d')}}</small>
+                  <ul id="interactive-layer">
+                    <li>Likes</li>
+                    <li>Dislikes</li>
+                    <li>Comment</li>
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
-          {% endfor %}
+            {% endfor %}
+          {% else %}
+            <div class="alert alert-warning">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              No pitches available
+            </div>
+          {% endif %}
         </div>
       </div>
     </div>
