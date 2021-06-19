@@ -1,16 +1,12 @@
 {% extends 'base.html' %}
 {% import 'bootstrap/wtf.html' as wtf%}
 
+
 {% block content %}
 <div class="card" id="registration-form">
   <h5 class="card-header">Post a comment</h5>
   <div class="card-body">
-    {{wtf.quick_form(comment_form)}}
+    {{wtf.quick_form(form)}}
   </div>
 </div>
-<div class="container">
-  <h2 class="text-center text-white">All comments:</h2>
-  <p>{{display_comments(comments)}}</p>
-</div>
-
 {% endblock %}

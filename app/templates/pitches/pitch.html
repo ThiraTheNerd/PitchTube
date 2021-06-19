@@ -13,10 +13,23 @@
           <p>{{pitch.content}}</p>
           <br>
           <small>Category: <a class="article-category" href="{{url_for('main.pitch_category', category = pitch.category)}}">{{pitch.category}}</a></small><br>
-          <small>Author: <a class="article-category" href="">{{pitch.user.username}}</a></small>
-          <hr>
+          <small>Author: <a class="article-category" href="">{{pitch.user.username}}</a></small><br>
           <small id="post-date">posted on {{pitch.posted_date.strftime('%Y-%m-%d')}}</small><br>
-          <br>
+          <div>
+            <br>
+            <a href="{{url_for('main.new_comment', id = pitch.id)}}">Leave Comments</a></span> 
+            <span class="foot" >
+              <a href="">
+                <i class="fa fa-thumbs-up" style="font-size:18px;color: green"></i>
+              </a>0
+            </span>
+            <span class="foot">
+              <a href="">
+                <i class="fa fa-thumbs-down" style="color:red;"></i>
+              </a>0
+            </span>
+          </div>
+          <hr>
           {% if pitch.user_id == current_user.id %}
           <div id= "interactive-layer">
             <a class="btn btn-secondary btn-sm mt-2 mb-2" href="">Edit</a>
@@ -24,6 +37,27 @@
           </div>
           {% endif %}
         </div>
+      </div>
+      <br>
+      <hr>
+      <div>
+        <h3>Comments</h3>
+        <hr>
+        {% if comments %}
+          {% for comment in comments %}
+          <div class="alert alert-warning" role="alert" id="comment">
+            <strong>{{comment.user.username}}</strong>
+            <p>{{comment.comment}}</p>
+          </div>
+          <small>{{comment.posted_date.strftime('%Y-%m-%d')}}</small>
+          
+          {% endfor %}
+        {% else %}
+        <div class="alert alert-warning" role="alert">
+          No comments
+        </div>
+        {% endif %}
+
       </div>
     </div>
 

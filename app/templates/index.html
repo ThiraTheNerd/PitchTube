@@ -19,11 +19,7 @@
           {% endfor %}
           {% for pitch in pitches%}
           <div class="col-md-4">
-            {% if pitch.profile_pic_path %}
-            <img src="{{url_for('static', filename = '{{pitch.profile_pic_path}}')}}" alt="this image" id="users-profile">
-            {% else %}
-            <img src="{{url_for('static', filename = 'photos/default.png')}}" alt="that-image" id="users-profile">
-            {% endif %}
+            <img src="https://source.unsplash.com/125x125/?profile,photo" alt="this image" id="users-profile">
           </div>
           <div class="col-md-8">
             <div class="card">
@@ -35,21 +31,21 @@
                 <br>
                 <small>Category: <a class="article-category" href="{{url_for('main.pitch_category', category = pitch.category)}}">
                   {{pitch.category}}</a></small><br>
-                <small>Author: <a class="article-category" href="">{{pitch.user.username}}</a></small><br>
+                <small>Author: <a class="article-category"
+                   href="{{url_for('main.profile', uname= pitch.user.username)}}">{{pitch.user.username}}</a></small><br>
                 <small id="post-date">posted on {{pitch.posted_date.strftime('%Y-%m-%d')}}</small><br>
                 <div>
                   <br>
-                  <span class="foot" >1<a href="{{url_for('main.new_comment', pitch_id = pitch.id)}}"> Comments</a></span> 
+                  <a href="{{url_for('main.new_comment', id = pitch.id)}}">Leave Comments</a></span> 
                   <span class="foot" >
-                    <a href="{{url_for('main.like',id = pitch.id)}}">
+                    <a href="">
                       <i class="fa fa-thumbs-up" style="font-size:18px;color: green"></i>
-                    </a> 1
+                    </a>0
                   </span>
                   <span class="foot">
                     <a href="">
                       <i class="fa fa-thumbs-down" style="color:red;"></i>
-                        2
-                    </a>
+                    </a>0
                   </span>
                 </div>
                 <hr>
@@ -60,7 +56,11 @@
         </div>
     </div>
     <div class="col-md-3">
-      <h4>Users</h4>
+      <h2>Find a Pitch</h2>
+      <form>
+          <input type="text" name="news_query" placeholder="Search for news" class="form-control">
+          <input type="submit"  value="Submit" class="btn btn-primary" style="margin-top: 5px;">
+      </form>
     </div>
   </div>
 </div>

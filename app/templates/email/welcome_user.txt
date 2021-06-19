@@ -1,0 +1,4 @@
+Hello {{user.username}}
+Welcome to Pitchtube
+We would like to thank you for signing up to this platform and would also like to welcome you 
+to the family. 

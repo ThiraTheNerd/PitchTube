@@ -21,7 +21,6 @@ class Pitch(db.Model):
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
   category= db.Column(db.String())
 
-
   def __repr__(self):
     return f'Pitch {self.pitch}'
 
@@ -68,11 +67,8 @@ class Comment(db.Model):
   @classmethod
   def get_comments(cls,pitch_id):
     comments = Comment.query.filter_by(pitch_id=pitch_id).all()
-
     return comments
 
-  def __repr__(self):
-    return f'Comment {self.comment}'
 
 class Upvote(db.Model):
     __tablename__ = 'upvotes'

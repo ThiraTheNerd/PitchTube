@@ -36,14 +36,49 @@
           </div>
           {% endif %}
         </div>
+        {% if user == current_user %}
         <div class="card-footer">
           <buttton class="btn btn-sm" id="updateprof-btn"><a href="{{url_for('main.update_profile', uname = user.username)}}">
             Update Profile</a>
           </buttton>
         </div>
+        {% endif %}
       </div>
     </div>
   </div>
   <hr>
+  <h1>Pitches by {{user.username}}</h1>
+  <hr>
+  {% for pitch in pitches %}
+  <div class="card">
+    <h3 class="card-header">{{pitch.pitch}}</h5>
+    <div class="card-body">
+      <h4>{{pitch.category_id}}</h6>
+      <p>{{pitch.content | truncate(50)}}</p>
+      <small><a class="article-readmore" href="{{url_for('main.pitch', id = pitch.id)}}">read more...</a></small><br>
+      <br>
+      <small>Category: <a class="article-category" href="{{url_for('main.pitch_category', category = pitch.category)}}">
+        {{pitch.category}}</a></small><br>
+      <small>Author: <a class="article-category"
+         href="{{url_for('main.profile', uname= pitch.user.username)}}">{{pitch.user.username}}</a></small><br>
+      <small id="post-date">posted on {{pitch.posted_date.strftime('%Y-%m-%d')}}</small><br>
+      <div>
+        <br>
+        <a href="{{url_for('main.new_comment', id = pitch.id)}}">Leave Comments</a></span> 
+        <span class="foot" >
+          <a href="">
+            <i class="fa fa-thumbs-up" style="font-size:18px;color: green"></i>
+          </a>0
+        </span>
+        <span class="foot">
+          <a href="">
+            <i class="fa fa-thumbs-down" style="color:red;"></i>
+          </a>0
+        </span>
+      </div>
+      <hr>
+    </div>
+  </div>
+  {% endfor %}
 </div>
 {% endblock %}
