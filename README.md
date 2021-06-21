@@ -83,7 +83,7 @@ OR run:
 ## Support and Contact
 ---
 
--Twitter: [@Josylad](https://twitter.com/thiragithinji/)
+-Twitter: [@thiragithinji](https://twitter.com/thiragithinji/)
 
 
 -Email Address: thiragithinji [@] gmail.com
