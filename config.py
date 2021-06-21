@@ -5,7 +5,7 @@ class Config:
     General configuration parent class
     '''
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = 'postgres://eyrduqspatymez:3f343f88ab24a646106266360032b3636c0c304eee5eba3c8e0c4d706068ed00@ec2-54-224-194-214.compute-1.amazonaws.com:5432/dc91pqn3gimkq5'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://eyrduqspatymez:3f343f88ab24a646106266360032b3636c0c304eee5eba3c8e0c4d706068ed00@ec2-54-224-194-214.compute-1.amazonaws.com:5432/dc91pqn3gimkq5'
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
 
     #Email configuration
