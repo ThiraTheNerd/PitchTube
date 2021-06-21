@@ -31,7 +31,7 @@ This is a Flask web application that allows users to spend their one minute to i
 
 # Prerequisites
 
-To work with PITCHRANKR App you need to have some few prerequisites.
+To work with Pitchtube App you need to have some few prerequisites.
 
 - Python3.8
 
